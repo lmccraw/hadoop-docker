@@ -1,10 +1,10 @@
-    version: 2.1
-    executors:
-      docker-publisher:
-        environment:
-          IMAGE_NAME: lucasdls/hadoop
-        docker:
-          - image: circleci/buildpack-deps:stretch
+version: 2.1
+executors:
+  docker-publisher:
+    environment:
+      IMAGE_NAME: lucasdls/hadoop
+    docker:
+      - image: circleci/buildpack-deps:stretch
 jobs:
   build:
     executor: docker-publisher

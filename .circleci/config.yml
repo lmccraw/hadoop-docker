@@ -1,3 +1,4 @@
+---
 version: 2.1
 executors:
   docker-publisher:
@@ -21,7 +22,7 @@ jobs:
           root: .
           paths:
             - ./image.tar
- publish-latest:
+  publish-latest:
     executor: docker-publisher
     steps:
       - attach_workspace:
@@ -52,8 +53,8 @@ jobs:
           command: |
             echo "$DOCKERHUB_PASS" | docker login -u "$DOCKERHUB_USERNAME" --password-stdin
             IMAGE_TAG=${CIRCLE_TAG/v/''}
-            docker tag $IMAGE_NAME:latest $IMAGE_NAME:$IMAGE_TAG
-            docker push $IMAGE_NAME:latest
+            docker tag $IMAGE_NAME:$TAG_NAME $IMAGE_NAME:$IMAGE_TAG
+            docker push $IMAGE_NAME:$TAG_NAME
             docker push $IMAGE_NAME:$IMAGE_TAG
 workflows:
   version: 2
